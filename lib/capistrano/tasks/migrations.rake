@@ -23,8 +23,8 @@ namespace :deploy do
       within release_path do
         with rails_env: fetch(:rails_env) do
           # execute :bundle, "--gemfile #{fetch(:app_path, '.')}/Gemfile exec rake -f #{fetch(:app_path, '.')}/Rakefile db:migrate"
-          Dir.chdir(bundle_path) do
-            execute :rake, "-f #{release_path.join(fetch(:app_path), 'Rakefile')} db:migrate"
+          Dir.chdir(fetch(:bundle_path)) do
+            execute :rake, "-f #{fetch(:release_path).join(fetch(:app_path), 'Rakefile')} db:migrate"
           end
         end
       end
